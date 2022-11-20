@@ -6,14 +6,19 @@ export function resizeImage(imgPath: string, newPath: string, width: number | nu
   return new Promise((resolve) => {
     setTimeout(() => {
       try {
-        const readStream: fs.ReadStream = fs.createReadStream(imgPath);
-        const writeStream: fs.WriteStream = fs.createWriteStream(process.cwd() + newPath);
-        let resizeSharp: sharp.Sharp = sharp();
-        resizeSharp = resizeSharp
-          .resize(width, height)
-          .on('info', () => console.log('Image Resized..'));
-        readStream.pipe(resizeSharp).pipe(writeStream);
-        resolve('slow');
+        if (fs.existsSync(imgPath)) {
+          const readStream: fs.ReadStream = fs.createReadStream(imgPath);
+          const writeStream: fs.WriteStream = fs.createWriteStream(process.cwd() + newPath);
+          let resizeSharp: sharp.Sharp = sharp();
+          resizeSharp = resizeSharp
+            .resize(width, height)
+            .on('info', () => console.log('Image Resized..'));
+          readStream.pipe(resizeSharp).pipe(writeStream);
+          return resolve(process.cwd() + newPath);
+        } else {
+          return resolve('file not found');
+        }
+
       } catch (error) {
         console.log(error);
       }

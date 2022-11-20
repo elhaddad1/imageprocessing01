@@ -64,21 +64,37 @@ var express_1 = require("express");
 var imgService = __importStar(require("../services/image_services"));
 exports.ResizeImageController = (0, express_1.Router)();
 exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var fullUrl, imgPath, filename, newPath, width, height;
+    var width, height, fullUrl, imgPath, filename, newPath, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
+                height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
+                if (!width || !height) {
+                    res.status(400);
+                    res.json({
+                        message: 'No Width an Height, please specify them '
+                    });
+                    return [2 /*return*/];
+                }
                 fullUrl = req.protocol + '://' + req.get('host');
                 imgPath = req.query.imgpath;
                 filename = imgPath.replace(/^.*[\\\/]/, '');
-                newPath = fullUrl + '/imagesfiles/resized_images/' //new_' //+ filename;
-                ;
-                width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
-                height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
-                console.log('width : ' + width);
+                newPath = '\\images\\resized_images\\' + 'new_' + filename;
                 return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
             case 1:
-                _a.sent();
+                result = _a.sent();
+                if (result == 'file not found') {
+                    res.status(404);
+                    res.json({
+                        message: 'file not found'
+                    });
+                    return [2 /*return*/];
+                }
+                res.status(200);
+                res.json({
+                    message: 'Image Resized with name : ' + result
+                });
                 return [2 /*return*/];
         }
     });
