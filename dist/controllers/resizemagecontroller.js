@@ -64,23 +64,23 @@ var express_1 = require("express");
 var imgService = __importStar(require("../services/image_services"));
 exports.ResizeImageController = (0, express_1.Router)();
 exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var width, height, fullUrl, imgPath, filename, newPath, result;
+    var width, height, imgPath, filename, newPath, result, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
                 width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
                 height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
                 if (!width || !height) {
                     res.status(400);
                     res.json({
-                        message: 'No Width an Height, please specify them '
+                        message: 'No Width Or Height Or Both, please specify them '
                     });
                     return [2 /*return*/];
                 }
-                fullUrl = req.protocol + '://' + req.get('host');
                 imgPath = req.query.imgpath;
                 filename = imgPath.replace(/^.*[\\\/]/, '');
-                newPath = '\\images\\resized_images\\' + 'new_' + filename;
+                newPath = '\\images\\resized_images\\' + 'new_' + req.query.width + '_' + req.query.height + filename;
                 return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
             case 1:
                 result = _a.sent();
@@ -95,7 +95,17 @@ exports.ResizeImageController.get('/resizeimage', function (req, res) { return _
                 res.json({
                     message: 'Image Resized with name : ' + result
                 });
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                Promise.reject(typeof error_1 === 'string' ? error_1 : error_1);
+                console.log(error_1);
+                res.status(404);
+                res.json({
+                    message: error_1
+                });
                 return [2 /*return*/];
+            case 3: return [2 /*return*/];
         }
     });
 }); });

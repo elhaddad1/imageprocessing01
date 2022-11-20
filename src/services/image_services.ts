@@ -20,6 +20,7 @@ export function resizeImage(imgPath: string, newPath: string, width: number | nu
         }
 
       } catch (error) {
+        Promise.reject(typeof error === 'string' ? error : error);
         console.log(error);
       }
     }, 1000);

@@ -43,26 +43,42 @@ describe("Function resizeImage", function () {
         expect(image_services_1.resizeImage).not.toBeUndefined();
     });
     it("Pass test case", function () { return __awaiter(_this, void 0, void 0, function () {
-        var result;
+        var result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, image_services_1.resizeImage)('images\\full\\encenadaport.jpg', '\\images\\resized_images\\new_encenadaport.jpg', 200, 300)];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, (0, image_services_1.resizeImage)('images\\full\\encenadaport.jpg', '\\images\\resized_images\\new_encenadaport.jpg', 200, 300)];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual('slow');
-                    return [2 /*return*/];
+                    expect(result).toEqual("D:\\udacity\\imageprocessing01\\images\\resized_images\\new_encenadaport.jpg");
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    Promise.reject(typeof error_1 === 'string' ? error_1 : error_1);
+                    console.log('That did not go well.');
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     }); });
     it("file not exist", function () { return __awaiter(_this, void 0, void 0, function () {
-        var result;
+        var result, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, image_services_1.resizeImage)('images\\full\\wrongpath.jpg', '\\images\\resized_images\\new_encenadaport.jpg', 200, 300)];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, (0, image_services_1.resizeImage)('images\\full\\wrongpath.jpg', '\\images\\resized_images\\new_encenadaport.jpg', 200, 300)];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual('file not found');
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
+                    Promise.reject(typeof error_2 === 'string' ? error_2 : error_2);
+                    console.log('That did not go well.');
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     }); });
