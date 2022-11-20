@@ -58,31 +58,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResizeImageController = void 0;
 var express_1 = require("express");
-var fs_1 = __importDefault(require("fs"));
 var imgService = __importStar(require("../services/image_services"));
 exports.ResizeImageController = (0, express_1.Router)();
 exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var fullUrl, imgPath, filename, newPath, width, height;
     return __generator(this, function (_a) {
-        fullUrl = req.protocol + '://' + req.get('host');
-        imgPath = fullUrl + '/' + req.query.imgpath;
-        filename = imgPath.replace(/^.*[\\\/]/, '');
-        newPath = fullUrl + '/imagesfiles/resized_images/new_' + filename;
-        width = req.query.width;
-        height = req.query.height;
-        imgService.resizeImage(imgPath, newPath, 200, 200).then(function (value) {
-            var inputFiles = fs_1.default.readdirSync(newPath);
-            res.status(200);
-            res.render('index', {
-                data: inputFiles
-            });
-        });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                fullUrl = req.protocol + '://' + req.get('host');
+                imgPath = req.query.imgpath;
+                filename = imgPath.replace(/^.*[\\\/]/, '');
+                newPath = fullUrl + '/imagesfiles/resized_images/' //new_' //+ filename;
+                ;
+                width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
+                height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
+                console.log('width : ' + width);
+                return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
     });
 }); });

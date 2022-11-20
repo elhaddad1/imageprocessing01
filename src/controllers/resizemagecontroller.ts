@@ -8,23 +8,20 @@ ResizeImageController.get(
   '/resizeimage',
   async (req: Request, res: Response) => {
     var fullUrl = req.protocol + '://' + req.get('host');
-    let imgPath = fullUrl + '/' + req.query.imgpath as string;
+    let imgPath = (req.query.imgpath as string);
     let filename = imgPath.replace(/^.*[\\\/]/, '')
-    let newPath = fullUrl + '/imagesfiles/resized_images/'//new_' //+ filename;
-    const width: number | null = req.query.width ? parseInt(req.query.width as string, 10) : null;
-    const height: number | null = req.query.height ? parseInt(req.query.height as string, 10) : null;
+    let newPath = '\\images\\resized_images\\' + 'new_' + filename;
 
+    const width: number | null = req.query.width ? parseInt((req.query.width as string).replace(/\D/g, ""), 10) : null;
+    const height: number | null = req.query.height ? parseInt((req.query.height as string).replace(/\D/g, ""), 10) : null;
 
-    await imgService.resize(imgPath, newPath,width, height);
+    console.log('width : ' + width)
+    await imgService.resizeImage(imgPath, newPath, width, height);
 
-    /*imgService.resizeImage(imgPath, newPath, 200, 200).then((value) => {
-      let inputFiles: string[] = fs.readdirSync(newPath);
-      res.status(200);
-      res.render('index', {
-        data: inputFiles
-      });
-    }
-    )*/
+    res.status(200);
+    res.json({
+      message: 'Image Resized with name : ' + 'new_' + filename
+    });
   }
 );
 

@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMetadata = exports.resizeImage = exports.imageMetadata = exports.tintImage = exports.convertTograyscale = void 0;
 var sharp_1 = __importDefault(require("sharp"));
+var fs_1 = __importDefault(require("fs"));
 function convertTograyscale(imgPath, newPath) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -97,32 +98,31 @@ function imageMetadata(imgPath) {
 }
 exports.imageMetadata = imageMetadata;
 function resizeImage(imgPath, newPath, width, height) {
-    return __awaiter(this, void 0, void 0, function () {
-        var resize, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, sharp_1.default)(imgPath)
-                            .resize(width, height)
-                            .toFile(newPath)];
-                case 1:
-                    resize = _a.sent();
-                    console.log(resize);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _a.sent();
-                    console.log(error_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            try {
+                var readStream = fs_1.default.createReadStream(imgPath);
+                var writeStream = fs_1.default.createWriteStream(process.cwd() + '\\images\\resized_images\\');
+                var resizeSharp = (0, sharp_1.default)(imgPath);
+                resizeSharp = resizeSharp
+                    .resize(width, height)
+                    .on('info', function () { return console.log('Image Resized..'); });
+                /* sharp(imgPath)
+                  .resize(width, height)
+                  .toFile(__dirname + '\\images\\resized_images\\2222_new.jpg');*/
+                readStream.pipe(resizeSharp).pipe(writeStream);
+                resolve('slow');
             }
-        });
+            catch (error) {
+                console.log(error);
+            }
+        }, 1000);
     });
 }
 exports.resizeImage = resizeImage;
 function getMetadata() {
     return __awaiter(this, void 0, void 0, function () {
-        var metadata, error_2;
+        var metadata, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -133,8 +133,8 @@ function getMetadata() {
                     console.log(metadata);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
-                    console.log("An error occurred during processing: ".concat(error_2));
+                    error_1 = _a.sent();
+                    console.log("An error occurred during processing: ".concat(error_1));
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
