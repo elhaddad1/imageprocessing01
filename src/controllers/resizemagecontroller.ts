@@ -17,7 +17,6 @@ ResizeImageController.get(
       return;
     }
 
-    var fullUrl = req.protocol + '://' + req.get('host');
     let imgPath = (req.query.imgpath as string);
     let filename = imgPath.replace(/^.*[\\\/]/, '')
     let newPath = '\\images\\resized_images\\' + 'new_' + filename;
