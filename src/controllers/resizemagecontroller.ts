@@ -2,6 +2,7 @@
 import { Router, Request, Response } from 'express';
 import fs from 'fs';
 import * as imgService from '../services/image_services'
+import { imagePaths, imagesPath,newImageName } from '../utilities/core';
 export const ResizeImageController: Router = Router();
 
 ResizeImageController.get(
@@ -18,9 +19,9 @@ ResizeImageController.get(
         return;
       }
 
-      let imgPath = (req.query.imgpath as string);
-      let filename = imgPath.replace(/^.*[\\\/]/, '')
-      let newPath = '\\images\\resized_images\\' + 'new_' + (req.query.width as string) + '_' + (req.query.height as string) + filename;
+      const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
+      let imgPath = fullImagePath + (req.query.filename as string);
+      let newPath = resizedImagePath + newImageName((req.query.filename as string),width, height);
       const result = await imgService.resizeImage(imgPath, newPath, width, height);
       if (result == 'file not found') {
         res.status(404);
@@ -30,9 +31,7 @@ ResizeImageController.get(
         return;
       }
       res.status(200);
-      res.json({
-        message: 'Image Resized with name : ' + result
-      });
+      res.sendFile(newPath);
     } catch (error) {
       Promise.reject(typeof error === 'string' ? error : error);
       console.log(error);
