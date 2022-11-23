@@ -60,6 +60,7 @@ http://localhost:3000
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
 
 
+```
 
 
 
