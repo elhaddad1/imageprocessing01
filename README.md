@@ -60,12 +60,17 @@ http://localhost:3000
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
 
 
-## Samples requests
+
+
+
+##  Samples requests
+
+Server URL
 
 ```URL
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
 http://localhost:3000/api/resizeimage?filename=icelandwaterfall.jpg&width=%27500%27&height=%27450%27
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27260%27&height=%27450%27
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27400%27&height=%27450%27
-```
 
+```
