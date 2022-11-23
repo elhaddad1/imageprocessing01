@@ -6,7 +6,7 @@ import { imagePaths, imagesPath,newImageName } from '../utilities/core';
 export const ResizeImageController: Router = Router();
 
 ResizeImageController.get(
-  '/resizeimage',
+  '/api/resizeimage',
   async (req: Request, res: Response) => {
     try {
       const width: number | null = req.query.width ? parseInt((req.query.width as string).replace(/\D/g, ""), 10) : null;

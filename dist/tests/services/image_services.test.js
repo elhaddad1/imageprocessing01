@@ -37,24 +37,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var image_services_1 = require("../../services/image_services");
+var core_1 = require("../../utilities/core");
 describe("Function resizeImage", function () {
     var _this = this;
     it("is defined", function () {
         expect(image_services_1.resizeImage).not.toBeUndefined();
     });
     it("Pass test case", function () { return __awaiter(_this, void 0, void 0, function () {
-        var result, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, fullImagePath, resizedImagePath, imgPath, newPath, result, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, image_services_1.resizeImage)('images\\full\\encenadaport.jpg', '\\images\\resized_images\\new_encenadaport.jpg', 200, 300)];
+                    _b.trys.push([0, 2, , 3]);
+                    _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
+                    imgPath = fullImagePath + 'encenadaport.jpg';
+                    newPath = resizedImagePath + (0, core_1.newImageName)('encenadaport.jpg', 200, 200);
+                    return [4 /*yield*/, (0, image_services_1.resizeImage)(imgPath, newPath, 200, 300)];
                 case 1:
-                    result = _a.sent();
-                    expect(result).toEqual("D:\\udacity\\imageprocessing01\\images\\resized_images\\new_encenadaport.jpg");
+                    result = _b.sent();
+                    expect(result).toEqual(newPath);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     Promise.reject(typeof error_1 === 'string' ? error_1 : error_1);
                     console.log('That did not go well.');
                     return [3 /*break*/, 3];

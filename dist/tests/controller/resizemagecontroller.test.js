@@ -42,13 +42,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var index_1 = __importDefault(require("../../index"));
 describe('Test resize controller', function () {
-    it("Request '/resizeimage' should return staus 200", function () { return __awaiter(void 0, void 0, void 0, function () {
+    it("Request '/api/resizeimage' should return staus 200", function () { return __awaiter(void 0, void 0, void 0, function () {
         var result, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, supertest_1.default)(index_1.default).get("/resizeimage?imgpath=images\\full\\encenadaport.jpg&width=%27200%27&height=%27500%27").send()];
+                    return [4 /*yield*/, (0, supertest_1.default)(index_1.default).get("/api/resizeimage?filename=encenadaport.jpg&width=200&height=500").send()];
                 case 1:
                     result = _a.sent();
                     expect(result.status).toBe(200);

@@ -1,4 +1,5 @@
 import { resizeImage } from "../../services/image_services";
+import { imagePaths, imagesPath, newImageName } from "../../utilities/core";
 
 
 
@@ -10,8 +11,11 @@ describe("Function resizeImage", function() {
 
   it("Pass test case", async () =>  {
     try {
-      const result = await resizeImage('images\\full\\encenadaport.jpg','\\images\\resized_images\\new_encenadaport.jpg',200,300);
-      expect(result).toEqual("D:\\udacity\\imageprocessing01\\images\\resized_images\\new_encenadaport.jpg");
+      const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
+      let imgPath = fullImagePath + 'encenadaport.jpg';
+      let newPath = resizedImagePath + newImageName('encenadaport.jpg',200, 200);
+      const result = await resizeImage(imgPath,newPath,200,300);
+      expect(result).toEqual(newPath);
     } catch (error) {
       Promise.reject(typeof error === 'string' ? error : error);
       console.log('That did not go well.')

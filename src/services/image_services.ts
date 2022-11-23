@@ -17,7 +17,7 @@ export function resizeImage(imgPath: string, newPath: string, width: number | nu
           .resize(width, height)
           .on('info', () => console.log('Image Resized..'));
         readStream.pipe(resizeSharp).pipe(writeStream);
-        setTimeout(() => {return resolve('done');},500);
+        setTimeout(() => {return resolve(newPath);},500);
       } else {
         return resolve('file not found');
       }

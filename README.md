@@ -48,9 +48,9 @@ http://localhost:3000
 Use below URL to call resize image API
 
 ```URL
-http://localhost:3000/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
-http://localhost:3000/resizeimage?filename=icelandwaterfall.jpg&width=%27500%27&height=%27450%27
-http://localhost:3000/resizeimage?filename=fjord.jpg&width=%27260%27&height=%27450%27
-http://localhost:3000/resizeimage?filename=fjord.jpg&width=%27400%27&height=%27450%27
+http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
+http://localhost:3000/api/resizeimage?filename=icelandwaterfall.jpg&width=%27500%27&height=%27450%27
+http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27260%27&height=%27450%27
+http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27400%27&height=%27450%27
 ```
 

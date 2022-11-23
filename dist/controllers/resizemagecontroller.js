@@ -62,13 +62,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResizeImageController = void 0;
 var express_1 = require("express");
 var imgService = __importStar(require("../services/image_services"));
+var core_1 = require("../utilities/core");
 exports.ResizeImageController = (0, express_1.Router)();
-exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var width, height, imgPath, filename, newPath, result, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+exports.ResizeImageController.get('/api/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var width, height, _a, fullImagePath, resizedImagePath, imgPath, newPath, result, error_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 2, , 3]);
                 width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
                 height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
                 if (!width || !height) {
@@ -78,12 +79,12 @@ exports.ResizeImageController.get('/resizeimage', function (req, res) { return _
                     });
                     return [2 /*return*/];
                 }
-                imgPath = req.query.imgpath;
-                filename = imgPath.replace(/^.*[\\\/]/, '');
-                newPath = '\\images\\resized_images\\' + 'new_' + req.query.width + '_' + req.query.height + filename;
+                _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
+                imgPath = fullImagePath + req.query.filename;
+                newPath = resizedImagePath + (0, core_1.newImageName)(req.query.filename, width, height);
                 return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
             case 1:
-                result = _a.sent();
+                result = _b.sent();
                 if (result == 'file not found') {
                     res.status(404);
                     res.json({
@@ -92,12 +93,10 @@ exports.ResizeImageController.get('/resizeimage', function (req, res) { return _
                     return [2 /*return*/];
                 }
                 res.status(200);
-                res.json({
-                    message: 'Image Resized with name : ' + result
-                });
+                res.sendFile(newPath);
                 return [3 /*break*/, 3];
             case 2:
-                error_1 = _a.sent();
+                error_1 = _b.sent();
                 Promise.reject(typeof error_1 === 'string' ? error_1 : error_1);
                 console.log(error_1);
                 res.status(404);
