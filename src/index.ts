@@ -1,16 +1,15 @@
 import express, { Application, Request, Response } from 'express'
 import morgan from 'morgan'
  import {routes}  from './routes';
-import path from 'path';
+import { page404Erro } from './middleware/responsecases';
 
 const PORT = process.env.PORT || 3000
 // create an instance server
 const app: Application = express()
 // HTTP request logger middleware
 app.use(morgan('dev'))
-
-app.use('/imagesfiles', express.static(path.join(__dirname, 'images')));
 routes(app);
+app.use(page404Erro);
 // add routing for / path
 app.get('/', (req: Request, res: Response) => {
   res.json({

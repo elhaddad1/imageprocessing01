@@ -1,12 +1,11 @@
 
 import { Router, Request, Response } from 'express';
-import fs from 'fs';
 import * as imgService from '../services/image_services'
 import { imagePaths, imagesPath,newImageName } from '../utilities/core';
 export const ResizeImageController: Router = Router();
 
 ResizeImageController.get(
-  '/api/resizeimage',
+  '/resizeimage',
   async (req: Request, res: Response) => {
     try {
       const width: number | null = req.query.width ? parseInt((req.query.width as string).replace(/\D/g, ""), 10) : null;
@@ -20,8 +19,8 @@ ResizeImageController.get(
       }
 
       const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
-      let imgPath = fullImagePath + (req.query.filename as string);
-      let newPath = resizedImagePath + newImageName((req.query.filename as string),width, height);
+      const imgPath = fullImagePath + (req.query.filename as string);
+      const newPath = resizedImagePath + newImageName((req.query.filename as string),width, height);
       const result = await imgService.resizeImage(imgPath, newPath, width, height);
       if (result == 'file not found') {
         res.status(404);

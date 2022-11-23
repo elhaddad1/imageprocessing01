@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
     "build": "npx tsc",
     "start:prod": "npm run build && node dist/index.js",
-    "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix",
-    "eslint:fix": "eslint --fix",
-    "test": "npx tsc && jasmine"
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix",
+    "test": "npx tsc && jasmine",
+    "start": "npm run build && npm run lint-fix && npm run test && nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",

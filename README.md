@@ -28,6 +28,15 @@ Start application
   npm run start
 ```
 
+## Running Linting
+
+To run tests, run the following command
+
+```bash
+  npm run lint
+```
+
+
 ## Running Tests
 
 To run tests, run the following command
@@ -43,9 +52,15 @@ Server URL
 
 ```URL
 http://localhost:3000
-```
 
-Use below URL to call resize image API
+```
+## API Endpoints
+
+```URL
+http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27
+
+
+## Samples requests
 
 ```URL
 http://localhost:3000/api/resizeimage?filename=fjord.jpg&width=%27500%27&height=%27450%27

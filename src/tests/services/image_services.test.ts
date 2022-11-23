@@ -12,8 +12,8 @@ describe("Function resizeImage", function() {
   it("Pass test case", async () =>  {
     try {
       const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
-      let imgPath = fullImagePath + 'encenadaport.jpg';
-      let newPath = resizedImagePath + newImageName('encenadaport.jpg',200, 200);
+      const imgPath = fullImagePath + 'encenadaport.jpg';
+      const newPath = resizedImagePath + newImageName('encenadaport.jpg',200, 200);
       const result = await resizeImage(imgPath,newPath,200,300);
       expect(result).toEqual(newPath);
     } catch (error) {

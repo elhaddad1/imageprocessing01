@@ -64,7 +64,7 @@ var express_1 = require("express");
 var imgService = __importStar(require("../services/image_services"));
 var core_1 = require("../utilities/core");
 exports.ResizeImageController = (0, express_1.Router)();
-exports.ResizeImageController.get('/api/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var width, height, _a, fullImagePath, resizedImagePath, imgPath, newPath, result, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {

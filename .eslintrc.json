@@ -16,6 +16,5 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": 2
     }
 }
