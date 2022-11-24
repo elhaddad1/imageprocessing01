@@ -48,7 +48,9 @@ describe('Test resize controller', function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, supertest_1.default)(index_1.default).get("/api/resizeimage?filename=encenadaport.jpg&width=200&height=500").send()];
+                    return [4 /*yield*/, (0, supertest_1.default)(index_1.default)
+                            .get('/api/resizeimage?filename=encenadaport.jpg&width=200&height=500')
+                            .send()];
                 case 1:
                     result = _a.sent();
                     expect(result.status).toBe(200);

@@ -17,7 +17,7 @@ app.use(responsecases_1.page404Erro);
 // add routing for / path
 app.get('/', function (req, res) {
     res.json({
-        message: 'Hello World 🌍'
+        message: 'Hello World 🌍',
     });
 });
 // start express server

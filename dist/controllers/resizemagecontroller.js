@@ -63,32 +63,35 @@ exports.ResizeImageController = void 0;
 var express_1 = require("express");
 var imgService = __importStar(require("../services/image_services"));
 var core_1 = require("../utilities/core");
+var core_validation_1 = require("../utilities/core_validation");
 exports.ResizeImageController = (0, express_1.Router)();
 exports.ResizeImageController.get('/resizeimage', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var width, height, _a, fullImagePath, resizedImagePath, imgPath, newPath, result, error_1;
+    var _a, fullImagePath, resizedImagePath, _validationMessage, width, height, imgPath, newPath, result, error_1;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _b.trys.push([0, 2, , 3]);
-                width = req.query.width ? parseInt(req.query.width.replace(/\D/g, ""), 10) : null;
-                height = req.query.height ? parseInt(req.query.height.replace(/\D/g, ""), 10) : null;
-                if (!width || !height) {
+                _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
+                _validationMessage = (0, core_validation_1.validateparametars)(req.query.filename, req.query.width, req.query.height);
+                if (_validationMessage) {
                     res.status(400);
                     res.json({
-                        message: 'No Width Or Height Or Both, please specify them '
+                        message: _validationMessage,
                     });
                     return [2 /*return*/];
                 }
-                _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
+                width = parseInt(req.query.width.replace(/\D/g, ''), 10);
+                height = parseInt(req.query.height.replace(/\D/g, ''), 10);
                 imgPath = fullImagePath + req.query.filename;
-                newPath = resizedImagePath + (0, core_1.newImageName)(req.query.filename, width, height);
+                newPath = resizedImagePath +
+                    (0, core_1.newImageName)(req.query.filename, width, height);
                 return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
             case 1:
                 result = _b.sent();
-                if (result == 'file not found') {
+                if (result === 'file not found') {
                     res.status(404);
                     res.json({
-                        message: 'file not found'
+                        message: 'file not found',
                     });
                     return [2 /*return*/];
                 }
@@ -101,7 +104,7 @@ exports.ResizeImageController.get('/resizeimage', function (req, res) { return _
                 console.log(error_1);
                 res.status(404);
                 res.json({
-                    message: error_1
+                    message: error_1,
                 });
                 return [2 /*return*/];
             case 3: return [2 /*return*/];

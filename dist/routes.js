@@ -2,9 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = void 0;
 var resizemagecontroller_1 = require("./controllers/resizemagecontroller");
-var _routes = [
-    ['/api/', resizemagecontroller_1.ResizeImageController],
-];
+var _routes = [['/api/', resizemagecontroller_1.ResizeImageController]];
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 var routes = function (app) {
     _routes.forEach(function (route) {

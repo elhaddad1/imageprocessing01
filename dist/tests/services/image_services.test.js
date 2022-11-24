@@ -38,12 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var image_services_1 = require("../../services/image_services");
 var core_1 = require("../../utilities/core");
-describe("Function resizeImage", function () {
+describe('Function resizeImage', function () {
     var _this = this;
-    it("is defined", function () {
+    it('is defined', function () {
         expect(image_services_1.resizeImage).not.toBeUndefined();
     });
-    it("Pass test case", function () { return __awaiter(_this, void 0, void 0, function () {
+    it('Pass test case', function () { return __awaiter(_this, void 0, void 0, function () {
         var _a, fullImagePath, resizedImagePath, imgPath, newPath, result, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -66,7 +66,7 @@ describe("Function resizeImage", function () {
             }
         });
     }); });
-    it("file not exist", function () { return __awaiter(_this, void 0, void 0, function () {
+    it('file not exist', function () { return __awaiter(_this, void 0, void 0, function () {
         var result, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {

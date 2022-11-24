@@ -27,6 +27,12 @@ Start application
 ```bash
   npm run start
 ```
+Start application for the first time
+    
+```bash
+  npm run start-first-time
+```
+
 
 ## Running Linting
 

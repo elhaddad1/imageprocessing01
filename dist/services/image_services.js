@@ -21,7 +21,9 @@ function resizeImage(imgPath, newPath, width, height) {
                     .resize(width, height)
                     .on('info', function () { return console.log('Image Resized..'); });
                 readStream.pipe(resizeSharp).pipe(writeStream);
-                setTimeout(function () { return resolve(newPath); }, 500);
+                setTimeout(function () {
+                    return resolve(newPath);
+                }, 500);
             }
             else {
                 return resolve('file not found');
