@@ -58,13 +58,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResizeImageController = void 0;
 var express_1 = require("express");
-var path_1 = __importDefault(require("path"));
 var imgService = __importStar(require("../services/image_services"));
 var core_1 = require("../utilities/core");
 var core_validation_1 = require("../utilities/core_validation");
@@ -86,8 +82,10 @@ exports.ResizeImageController.get('/resizeimage', function (req, res) { return _
                 }
                 width = parseInt(req.query.width.replace(/\D/g, ''), 10);
                 height = parseInt(req.query.height.replace(/\D/g, ''), 10);
-                imgPath = path_1.default.join(fullImagePath, req.query.filename);
-                newPath = path_1.default.join(resizedImagePath, ((0, core_1.newImageName)(req.query.filename, width, height)));
+                imgPath = (fullImagePath +
+                    req.query.filename);
+                newPath = (resizedImagePath +
+                    (0, core_1.newImageName)(req.query.filename, width, height));
                 return [4 /*yield*/, imgService.resizeImage(imgPath, newPath, width, height)];
             case 1:
                 result = _b.sent();

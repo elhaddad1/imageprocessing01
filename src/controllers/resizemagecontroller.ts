@@ -31,10 +31,14 @@ ResizeImageController.get(
                 (req.query.height as string).replace(/\D/g, ''),
                 10
             )
-            const imgPath = path.join(fullImagePath, (req.query.filename as string)) ;
-            const newPath =
-            path.join( resizedImagePath 
-                , (newImageName(req.query.filename as string, width, height)));
+            const imgPath = (
+                fullImagePath+
+            (req.query.filename as string)
+            )
+            const newPath = (
+                resizedImagePath+
+                newImageName(req.query.filename as string, width, height)
+            )
             const result = await imgService.resizeImage(
                 imgPath,
                 newPath,

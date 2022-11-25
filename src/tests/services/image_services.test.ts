@@ -9,11 +9,12 @@ describe('Function resizeImage', function () {
 
     it('Pass test case', async () => {
         try {
-            const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
-            const imgPath = path.join(fullImagePath, 'encenadaport.jpg') ;
-            const newPath =
-            path.join( resizedImagePath 
-                , (newImageName('encenadaport.jpg', 300, 300)));
+            const { fullImagePath, resizedImagePath }: imagePaths = imagesPath()
+            const imgPath = (fullImagePath+ 'encenadaport.jpg')
+            const newPath = path.join(
+                resizedImagePath+
+                newImageName('encenadaport.jpg', 300, 300)
+            )
             const result = await resizeImage(imgPath, newPath, 300, 300)
             expect(result).toEqual(newPath)
         } catch (error) {

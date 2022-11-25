@@ -1,11 +1,13 @@
+import path from 'path'
+
 export interface imagePaths {
     fullImagePath: string
     resizedImagePath: string
 }
 export const imagesPath = (): imagePaths => {
     return {
-        fullImagePath: process.cwd() + '\\images\\full\\',
-        resizedImagePath: process.cwd() + '\\images\\resized_images\\',
+        fullImagePath: path.join(__dirname, '../../images/full/'),
+        resizedImagePath: path.join(__dirname, '../../images/resized_images/'),
     }
 }
 

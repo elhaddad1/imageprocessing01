@@ -54,8 +54,9 @@ describe('Function resizeImage', function () {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
-                    imgPath = path_1.default.join(fullImagePath, 'encenadaport.jpg');
-                    newPath = path_1.default.join(resizedImagePath, ((0, core_1.newImageName)('encenadaport.jpg', 300, 300)));
+                    imgPath = (fullImagePath + 'encenadaport.jpg');
+                    newPath = path_1.default.join(resizedImagePath +
+                        (0, core_1.newImageName)('encenadaport.jpg', 300, 300));
                     return [4 /*yield*/, (0, image_services_1.resizeImage)(imgPath, newPath, 300, 300)];
                 case 1:
                     result = _b.sent();
