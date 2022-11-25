@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import path from 'path'
 import * as imgService from '../services/image_services'
 import { imagePaths, imagesPath, newImageName } from '../utilities/core'
 import { validateparametars } from '../utilities/core_validation'
@@ -30,10 +31,10 @@ ResizeImageController.get(
                 (req.query.height as string).replace(/\D/g, ''),
                 10
             )
-            const imgPath = fullImagePath + (req.query.filename as string)
+            const imgPath = path.join(fullImagePath, (req.query.filename as string)) ;
             const newPath =
-                resizedImagePath +
-                newImageName(req.query.filename as string, width, height)
+            path.join( resizedImagePath 
+                , (newImageName(req.query.filename as string, width, height)));
             const result = await imgService.resizeImage(
                 imgPath,
                 newPath,
