@@ -35,7 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var path_1 = __importDefault(require("path"));
 var image_services_1 = require("../../services/image_services");
 var core_1 = require("../../utilities/core");
 describe('Function resizeImage', function () {
@@ -50,9 +54,9 @@ describe('Function resizeImage', function () {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = (0, core_1.imagesPath)(), fullImagePath = _a.fullImagePath, resizedImagePath = _a.resizedImagePath;
-                    imgPath = fullImagePath + 'encenadaport.jpg';
-                    newPath = resizedImagePath + (0, core_1.newImageName)('encenadaport.jpg', 200, 200);
-                    return [4 /*yield*/, (0, image_services_1.resizeImage)(imgPath, newPath, 200, 300)];
+                    imgPath = path_1.default.join(fullImagePath, 'encenadaport.jpg');
+                    newPath = path_1.default.join(resizedImagePath, ((0, core_1.newImageName)('encenadaport.jpg', 300, 300)));
+                    return [4 /*yield*/, (0, image_services_1.resizeImage)(imgPath, newPath, 300, 300)];
                 case 1:
                     result = _b.sent();
                     expect(result).toEqual(newPath);
