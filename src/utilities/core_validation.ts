@@ -5,9 +5,12 @@ export interface imagePaths {
     resizedImagePath: string
 }
 export const imagesPath = (): imagePaths => {
+    
+  const pathList = __dirname.split(path.sep);
+  pathList.pop();
     return {
-        fullImagePath: process.cwd() + '\\images\\full\\',
-        resizedImagePath: process.cwd() + '\\images\\resized_images\\',
+        fullImagePath: path.join(pathList.join(path.sep), 'images', 'images', 'full') ,
+        resizedImagePath: path.join(pathList.join(path.sep), 'images', 'images', 'resized_images') ,
     }
 }
 

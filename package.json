@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "install-modules": "rimraf ./node_modules && npm install --force",
-    "build": "npm run clean && npm run install-modules && npm run prettier-format && npx tsc",
+    "build": "npm run clean && npm run prettier-format && npx tsc",
     "build-first-time": "npm run clean && npm run install-modules && npm run prettier-format && npx tsc",
     "start:prod": "npm run build && node dist/index.js",
     "lint": "eslint . --ext .ts",
