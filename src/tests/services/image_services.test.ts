@@ -1,3 +1,4 @@
+import path from 'path'
 import { resizeImage } from '../../services/image_services'
 import { imagePaths, imagesPath, newImageName } from '../../utilities/core'
 
@@ -8,11 +9,12 @@ describe('Function resizeImage', function () {
 
     it('Pass test case', async () => {
         try {
-            const { fullImagePath, resizedImagePath }: imagePaths = imagesPath()
-            const imgPath = fullImagePath + 'encenadaport.jpg'
+            const { fullImagePath, resizedImagePath }: imagePaths = imagesPath();
+            const imgPath = path.join(fullImagePath, 'encenadaport.jpg') ;
             const newPath =
-                resizedImagePath + newImageName('encenadaport.jpg', 200, 200)
-            const result = await resizeImage(imgPath, newPath, 200, 300)
+            path.join( resizedImagePath 
+                , (newImageName('encenadaport.jpg', 300, 300)));
+            const result = await resizeImage(imgPath, newPath, 300, 300)
             expect(result).toEqual(newPath)
         } catch (error) {
             Promise.reject(typeof error === 'string' ? error : error)
