@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express'
-import path from 'path'
 import * as imgService from '../services/image_services'
 import { imagePaths, imagesPath, newImageName } from '../utilities/core'
 import { validateparametars } from '../utilities/core_validation'
